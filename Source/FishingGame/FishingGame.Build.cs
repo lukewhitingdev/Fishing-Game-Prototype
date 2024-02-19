@@ -6,6 +6,7 @@ public class FishingGame : ModuleRules
 {
 	public FishingGame(ReadOnlyTargetRules Target) : base(Target)
 	{
+		OptimizeCode = CodeOptimization.Never;
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
