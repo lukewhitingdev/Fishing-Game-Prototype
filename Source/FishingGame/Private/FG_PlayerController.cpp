@@ -13,13 +13,13 @@ void AFG_PlayerController::SetupInputComponent()
 	checkf(InputComp != nullptr, TEXT("Input is expected InPawnto be enabled on this player controller."))
 
 	// Bind movement events
-	InputComp->BindAction("Move Forward", IE_Pressed, this, &AFG_PlayerController::MoveForward);
-	InputComp->BindAction("Move Backward", IE_Pressed, this, &AFG_PlayerController::MoveBackward);
-	InputComp->BindAction("Move Right", IE_Pressed, this, &AFG_PlayerController::MoveRight);
-	InputComp->BindAction("Move Left", IE_Pressed, this, &AFG_PlayerController::MoveLeft);
+	InputComp->BindAxis("Move Forward", this, &AFG_PlayerController::MoveForward);
+	InputComp->BindAxis("Move Backward", this, &AFG_PlayerController::MoveBackward);
+	InputComp->BindAxis("Move Right", this, &AFG_PlayerController::MoveRight);
+	InputComp->BindAxis("Move Left", this, &AFG_PlayerController::MoveLeft);
 }
 
-void AFG_PlayerController::MoveForward()
+void AFG_PlayerController::MoveForward(float Value)
 {
 	APawn* CurrentPawn = GetPawn();
 	if(CurrentPawn == nullptr)
@@ -31,11 +31,11 @@ void AFG_PlayerController::MoveForward()
 
 	if(MoveableCharacter != nullptr)
 	{
-		MoveableCharacter->MoveForward(1);
+		MoveableCharacter->MoveForward(Value);
 	}
 }
 
-void AFG_PlayerController::MoveBackward()
+void AFG_PlayerController::MoveBackward(float Value)
 {
 	APawn* CurrentPawn = GetPawn();
 	if (CurrentPawn == nullptr)
@@ -47,11 +47,11 @@ void AFG_PlayerController::MoveBackward()
 
 	if (MoveableCharacter != nullptr)
 	{
-		MoveableCharacter->MoveBackwards(1);
+		MoveableCharacter->MoveBackwards(Value);
 	}
 }
 
-void AFG_PlayerController::MoveRight()
+void AFG_PlayerController::MoveRight(float Value)
 {
 	APawn* CurrentPawn = GetPawn();
 	if (CurrentPawn == nullptr)
@@ -63,11 +63,11 @@ void AFG_PlayerController::MoveRight()
 
 	if (MoveableCharacter != nullptr)
 	{
-		MoveableCharacter->MoveRight(1);
+		MoveableCharacter->MoveRight(Value);
 	}
 }
 
-void AFG_PlayerController::MoveLeft()
+void AFG_PlayerController::MoveLeft(float Value)
 {
 	APawn* CurrentPawn = GetPawn();
 	if (CurrentPawn == nullptr)
@@ -79,6 +79,6 @@ void AFG_PlayerController::MoveLeft()
 
 	if (MoveableCharacter != nullptr)
 	{
-		MoveableCharacter->MoveLeft(1);
+		MoveableCharacter->MoveLeft(Value);
 	}
 }
