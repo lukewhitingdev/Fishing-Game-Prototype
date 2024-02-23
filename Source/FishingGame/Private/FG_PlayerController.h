@@ -18,8 +18,8 @@ protected:
 	virtual void SetupInputComponent() override;
 
 private:
-	void MoveForward();
-	void MoveBackward();
-	void MoveRight();
-	void MoveLeft();
+	void MoveForward(float Value);
+	void MoveBackward(float Value);
+	void MoveRight(float Value);
+	void MoveLeft(float Value);
 };
