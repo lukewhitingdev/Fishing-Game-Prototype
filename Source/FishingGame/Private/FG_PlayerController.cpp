@@ -4,6 +4,7 @@
 #include "FG_PlayerController.h"
 
 #include "IFG_MoveableCharacter.h"
+#include "Interfaces/FG_IUseInteracts.h"
 
 void AFG_PlayerController::SetupInputComponent()
 {
@@ -17,6 +18,23 @@ void AFG_PlayerController::SetupInputComponent()
 	InputComp->BindAxis("Move Backward", this, &AFG_PlayerController::MoveBackward);
 	InputComp->BindAxis("Move Right", this, &AFG_PlayerController::MoveRight);
 	InputComp->BindAxis("Move Left", this, &AFG_PlayerController::MoveLeft);
+
+	InputComp->BindAction("Interact", IE_Pressed, this, &AFG_PlayerController::Interact);
+}
+
+void AFG_PlayerController::Interact()
+{
+	APawn* CurrentPawn = GetPawn();
+	if (CurrentPawn == nullptr)
+	{
+		return;
+	}
+
+	IFG_IUseInteracts* UseInteracts = Cast<IFG_IUseInteracts>(CurrentPawn);
+	if(UseInteracts != nullptr)
+	{
+		UseInteracts->Interact();
+	}
 }
 
 void AFG_PlayerController::MoveForward(float Value)
