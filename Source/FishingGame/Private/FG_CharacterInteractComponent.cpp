@@ -17,11 +17,20 @@ void UFG_CharacterInteractComponent::SetInteractableActor(AActor* Actor)
 	if(Actor->Implements<UFG_IInteractable>())
 	{
 		InteractableActor = Actor;
+		IFG_IInteractable* Interactable = Cast<IFG_IInteractable>(InteractableActor);
+		checkf(Interactable != nullptr, TEXT("Interactable actor is expected to implement IInteractable interface!"));
+		Interactable->SetActorInRange(GetOwner());
 	}
 }
 
 void UFG_CharacterInteractComponent::ClearInteractableActor()
 {
+	if(InteractableActor != nullptr)
+	{
+		IFG_IInteractable* Interactable = Cast<IFG_IInteractable>(InteractableActor);
+		checkf(Interactable != nullptr, TEXT("Interactable actor is expected to implement IInteractable interface!"));
+		Interactable->SetActorInRange(nullptr);
+	}
 	InteractableActor = nullptr;
 }
 

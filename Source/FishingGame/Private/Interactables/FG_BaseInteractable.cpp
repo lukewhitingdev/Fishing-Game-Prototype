@@ -31,6 +31,16 @@ bool AFG_BaseInteractable::CanInteract_Blueprint_Implementation()
 	return true;
 }
 
+void AFG_BaseInteractable::SetActorInRange(AActor* ActorInRange)
+{
+	InRangeActor = ActorInRange;
+}
+
+AActor* AFG_BaseInteractable::GetActorInRange()
+{
+	return InRangeActor;
+}
+
 // Called when the game starts or when spawned
 void AFG_BaseInteractable::BeginPlay()
 {
@@ -44,4 +54,5 @@ void AFG_BaseInteractable::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
 

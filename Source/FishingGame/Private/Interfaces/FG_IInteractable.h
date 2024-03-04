@@ -24,4 +24,6 @@ class IFG_IInteractable
 public:
 	virtual void Interact() = 0;
 	virtual bool CanInteract() = 0;
+	virtual void SetActorInRange(AActor* ActorInRange) = 0;
+	virtual AActor* GetActorInRange() = 0;
 };
